@@ -1,0 +1,35 @@
+一：启动：docker run  -t -d --name sdwanO -p 3001:6653 fiberhome/cbb:2.3.16sss
+
+二：查看所有docker镜像进程  docker ps -a  
+
+三：进入cbb11镜像的bash docker exec -it cbb11 bash 
+
+四：查看cbb11的ip  docker exec -it cbb11 ip a
+
+五：查看日志docker logs cbb11
+
+六：向docker容器中上传文件
+  1先docker ps查看容器id（或容器名）
+  2然后：docker cp ./cluster-app-1.11.1.oar 736471dbe14c:/root/onos/apache-karaf-3.0.8
+  
+七：docker终止容器
+        docker stop/kill containerID/name
+（删除） docker rm containerID/name
+
+八：操作（停止 删除 启动）所有容器 
+	sudo docker start `sudo docker ps -aq`
+  sudo docker start name1/id1 name2 id2 ...
+  
+	sudo docker stop `sudo docker ps -aq`
+	sudo docker rm -f `sudo docker ps -aq`
+  
+九：docker导出镜像，下载到本地，导入     
+1. 查看镜像id
+sudo docker images
+2. 选择要打包的镜像，执行打包命令
+sudo docker save -o quay.io-calico-node-1.tar quay.io/calico/node 
+3. 在开发环境导入上述打包的镜像
+docker load -i quay.io-calico-node-1.tar
+ 
+十：dockerc创建网络
+ 
